@@ -45,6 +45,9 @@ public class ProductEntity {
     public double getPreco() {
         return preco;
     }
+    public int getQuantity() {
+        return quantity;
+    }
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }

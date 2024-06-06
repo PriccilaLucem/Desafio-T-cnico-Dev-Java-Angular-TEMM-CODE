@@ -36,7 +36,7 @@ public class ProductService {
 
     public ProductEntity putCategoryService(ProductEntity product) throws BadRequestException{
         if(product.getId() == null){
-            throw new BadRequestException("Category does not exist");
+            throw new BadRequestException("Product does not exist");
         }
         return productRepository.save(product);
     }
