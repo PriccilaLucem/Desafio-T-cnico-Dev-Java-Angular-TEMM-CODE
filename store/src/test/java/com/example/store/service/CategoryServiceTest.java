@@ -66,16 +66,16 @@ public class CategoryServiceTest {
         category.setNome("Electronics");
         category.setDescricao("All kinds of electronic items");
 
-        when(categoryRepository.findById(categoryId)).thenReturn(Optional.of(category));
+        when(categoryRepository.findByNome(category.getNome())).thenReturn(Optional.of(category));
 
-        CategoryEntity foundCategory = categoryService.filterByCategoryNameService(categoryId);
+        CategoryEntity foundCategory = categoryService.filterByCategoryNameService(category.getNome());
 
         assertThat(foundCategory).isNotNull();
         assertThat(foundCategory.getId()).isEqualTo(categoryId);
         assertThat(foundCategory.getNome()).isEqualTo("Electronics");
         assertThat(foundCategory.getDescricao()).isEqualTo("All kinds of electronic items");
 
-        verify(categoryRepository, times(1)).findById(categoryId);
+        verify(categoryRepository, times(1)).findByNome(category.getNome());
     }
 
     @Test

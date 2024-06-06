@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.coyote.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.store.repository.ProductRepository;
 import com.example.store.util.Mapper;
@@ -23,6 +24,7 @@ public class ProductService {
     @Autowired 
     private CategoryService categoryService;
 
+    @Transactional
     public ProductEntity postProductService(ProductCategoryDTO productDTO){
         ProductEntity product = Mapper.parseObject(productDTO, ProductEntity.class);
         product.setCategory(categoryService.filterByCategoryNameService(productDTO.getCategoryNome()));
