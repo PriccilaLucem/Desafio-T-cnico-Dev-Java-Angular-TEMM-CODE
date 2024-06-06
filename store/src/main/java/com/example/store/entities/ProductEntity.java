@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -25,6 +27,11 @@ public class ProductEntity {
 
     @Column(name = "quantidade_em_estoque", nullable = false)
     private int quantity;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    CategoryEntity category;
+
 
     public String getDescricao() {
         return descricao;
@@ -53,4 +60,5 @@ public class ProductEntity {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+
 }
