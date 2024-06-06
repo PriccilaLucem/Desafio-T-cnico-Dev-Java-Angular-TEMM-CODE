@@ -7,9 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.store.repository.ProductRepository;
+import com.example.store.util.Mapper;
 
 import jakarta.persistence.EntityNotFoundException;
 
+import com.example.store.dto.ProductCategoryDTO;
 import com.example.store.entities.ProductEntity;
 
 @Service
@@ -18,11 +20,16 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
-      public ProductEntity postProductService(ProductEntity product){
+    @Autowired 
+    private CategoryService categoryService;
+
+    public ProductEntity postProductService(ProductCategoryDTO productDTO){
+        ProductEntity product = Mapper.parseObject(productDTO, ProductEntity.class);
+        product.setCategory(categoryService.filterByCategoryNameService(productDTO.getCategoryNome()));
         return productRepository.save(product);
     }
 
-    public ProductEntity filterByProductNameService(Long id){
+    public ProductEntity filterByProductIdService(Long id){
         return productRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Product not found"));
     }
 
@@ -34,7 +41,7 @@ public class ProductService {
         productRepository.delete(productRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Product not found")));
     }
 
-    public ProductEntity putCategoryService(ProductEntity product) throws BadRequestException{
+    public ProductEntity putProductService(ProductEntity product) throws BadRequestException{
         if(product.getId() == null){
             throw new BadRequestException("Product does not exist");
         }

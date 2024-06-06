@@ -22,8 +22,8 @@ public class CategoryService {
         return categoryRepository.save(category);
     }
 
-    public CategoryEntity filterByCategoryNameService(Long id){
-        return categoryRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Category not found"));
+    public CategoryEntity filterByCategoryNameService(String nome){
+        return categoryRepository.findByNome(nome).orElseThrow(() -> new EntityNotFoundException("Category not found"));
     }
 
     public List<CategoryEntity> filterAllCategoriesService(){

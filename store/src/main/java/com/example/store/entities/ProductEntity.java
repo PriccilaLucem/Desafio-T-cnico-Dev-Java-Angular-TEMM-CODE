@@ -28,10 +28,14 @@ public class ProductEntity {
     @Column(name = "quantidade_em_estoque", nullable = false)
     private int quantity;
 
-    @ManyToOne
-    @JoinColumn(name = "category_id")
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "category_id", nullable = false)
     CategoryEntity category;
 
+
+    public CategoryEntity getCategory() {
+        return category;
+    }
 
     public String getDescricao() {
         return descricao;
@@ -63,5 +67,7 @@ public class ProductEntity {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-
+    public void setCategory(CategoryEntity category) {
+        this.category = category;
+    }
 }

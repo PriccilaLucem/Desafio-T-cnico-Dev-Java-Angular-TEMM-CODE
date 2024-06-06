@@ -71,7 +71,7 @@ public class ProductServiceTest {
         product.setQuantity(2);
 
         when(productRepository.findById(productId)).thenReturn(Optional.of(product));
-        productService.filterByProductNameService(productId);
+        productService.filterByProductIdService(productId);
         
         verify(productRepository, times(1)).findById(productId);
     }
@@ -106,7 +106,7 @@ public class ProductServiceTest {
 
         when(productRepository.save(product)).thenReturn(product);
 
-        ProductEntity updatedProduct = productService.putCategoryService(product);
+        ProductEntity updatedProduct = productService.putProductService(product);
 
         assertThat(updatedProduct).isNotNull();
         assertThat(updatedProduct.getId()).isEqualTo(1L);
@@ -118,7 +118,7 @@ public class ProductServiceTest {
     public void testPutProductService_InvalidProduct(){
         ProductEntity product = new ProductEntity();
 
-        assertThatThrownBy(() -> productService.putCategoryService(product))
+        assertThatThrownBy(() -> productService.putProductService(product))
         .isInstanceOf(BadRequestException.class)
         .hasMessage("Product does not exist");
     }
