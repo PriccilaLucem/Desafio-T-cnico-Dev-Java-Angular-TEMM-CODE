@@ -55,7 +55,7 @@ public class ProductController {
         }
     )
     @GetMapping()
-    public  ResponseEntity<List<ProductEntity>>  getAllProductsController(@RequestParam String param) {
+    public  ResponseEntity<List<ProductEntity>>  getAllProductsController(@RequestParam(required = false) String param) {
         return ResponseEntity.ok().body(productService.filterAllProductsService());
     }
     
