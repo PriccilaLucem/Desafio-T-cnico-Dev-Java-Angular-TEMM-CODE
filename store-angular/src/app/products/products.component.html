@@ -1,0 +1,12 @@
+<section>
+    
+    <section class="medium-class">
+        <div>
+            <button>Criar novo produto</button>
+        </div>
+    </section>
+    <ul>
+        <li *ngFor="let product of products$ | async">
+            {{ product.nome }} - {{ product.preco }}
+          </li>    </ul>
+ </section>

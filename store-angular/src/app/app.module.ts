@@ -3,7 +3,6 @@ import { AppComponent } from './app.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatDialogModule } from '@angular/material/dialog'; 
 import { MatButtonModule } from '@angular/material/button';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -12,9 +11,12 @@ import { MatButtonModule } from '@angular/material/button';
   imports: [
     BrowserModule,
     MatDialogModule,
-    MatButtonModule
+    MatButtonModule,
   ],
   bootstrap: [AppComponent],
-  providers: []
+  providers: [
+]
+
+
 })
 export class AppModule { }
