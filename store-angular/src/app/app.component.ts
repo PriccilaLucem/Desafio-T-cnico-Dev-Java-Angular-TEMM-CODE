@@ -1,12 +1,16 @@
 import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { HomeComponent } from './home/home.component';
 
 @Component({
+  imports: [HomeComponent],
   selector: 'app-root',
-  standalone: true,
-  imports: [],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  standalone: true 
 })
 export class AppComponent {
   title = 'store-angular';
+  
+  constructor(private http : HttpClient) {}
+  
 }

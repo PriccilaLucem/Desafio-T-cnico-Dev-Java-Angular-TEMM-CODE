@@ -1,0 +1,19 @@
+button{ 
+    padding: auto;
+    border-radius: 20px;
+    border: color(0,0,0) 1px solid;
+    width: 20vw;
+    height: 5vh;
+}
+
+button:hover{
+    background-color: red;
+    color: blue;
+}
+
+.home{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 20vh;
+    padding-right: 20vh;
+}
