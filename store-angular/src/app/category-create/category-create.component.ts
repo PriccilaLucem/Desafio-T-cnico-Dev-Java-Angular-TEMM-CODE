@@ -4,6 +4,7 @@ import { FormBuilder, Validators, FormGroup, ReactiveFormsModule } from '@angula
 import { Category } from 'app/interfaces/category.interface';
 import { CategoriesService } from 'app/services/categories.service';
 import { CategoryCreateService } from 'app/services/category-create.service';
+import { CategoryUpdateService } from 'app/services/category-update.service';
 
 @Component({
   selector: 'app-category-create',
@@ -19,7 +20,7 @@ export class CategoryCreateComponent {
 
   showError: boolean = false;
   categoryForm!: FormGroup;
-  constructor(private fb: FormBuilder, private categoryService:CategoriesService, private categoryCrate: CategoryCreateService) {}
+  constructor(private fb: FormBuilder, private categoryService:CategoriesService, private categoryCrate: CategoryCreateService, private categoryUpdateService:CategoryUpdateService) {}
 
   ngOnInit(): void {
     this.categoryForm = this.fb.group({
@@ -34,6 +35,8 @@ export class CategoryCreateComponent {
       const category: Category = this.categoryForm.value;
       this.categoryService.postCategory(category).subscribe({
         next: (response) => {
+          this.categoryUpdateService.emitCategoryUpdated();
+
         },
         error: (error) => {
           this.showError = true;

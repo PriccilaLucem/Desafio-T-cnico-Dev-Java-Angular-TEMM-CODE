@@ -1,20 +1,25 @@
-
+<!-- categories.component.html -->
 <section>
-    
     <section class="medium-class">
-        <div>
-            <button (click) = "openCategoryCrate()">Criar nova categoria</button>
-        </div>
+
+        <button (click)="openCategoryCreateDialog()">Adicionar Categoria</button>
     </section>
-    <ul>
-        <li *ngFor="let category of categories$ | async">
-            <div>
-                {{category.nome}}
-            </div>    
-            <div>
-                {{category.descricao}}
-            </div>
-        
-        </li>
+    <ul class="ul-list-all">
+      <li *ngFor="let category of categories$ | async">
+        <button class="delete" (click)="deleteCategory(category.id)">Delete category</button>
+        <div class="info">
+          <p>Nome: </p>
+          <span *ngIf="editingId !== category.id" (click)="enableEditing(category)">{{ category.nome }}</span>
+          <input *ngIf="editingId === category.id" [(ngModel)]="updatedName" (blur)="saveCategory(category)" />
+        </div>
+        <div class="info">
+          <p>Descrição: </p>
+          <span *ngIf="editingId !== category.id" (click)="enableEditing(category)">{{ category.descricao }}</span>
+          <input *ngIf="editingId === category.id" [(ngModel)]="updatedDescription" (blur)="saveCategory(category)" />
+        </div>
+        <button class="salvar" *ngIf="editingId === category.id" (click)="cancelEditing()">Cancelar</button>
+
+    </li>
     </ul>
- </section>
+  </section>
+  

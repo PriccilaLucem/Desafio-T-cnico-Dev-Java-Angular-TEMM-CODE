@@ -2,12 +2,10 @@
 
 @include mat.core();
 
-/* Você também pode adicionar os estilos do tema do Angular Material aqui */
-/* Aqui você pode adicionar seus próprios estilos personalizados */
 button{ 
     padding: auto;
     border-radius: 20px;
-    border: color(0,0,0) 1px solid;
+    border: color(0 0,0) 1px solid;
     width: 20vw;
     height: 5vh;
 }
@@ -21,5 +19,40 @@ button:hover{
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     margin-top: 5vh;
+}
+.ul-list-all{
+    display: flex;
+    align-items: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;    
+}
+li{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    list-style: none;
+    margin: 20px;
+    border: 3px solid blue;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.delete{
+    background-color: red;
+    width: 100px;
+}
+.info{
+    display: flex;
+    margin-top: 10px;
+    width: 100%;
+}
+p{
+    margin: 0;
+    margin-right: 10px;
+    width: 80px;
+}
+input{
+    width: 300px;
 }
