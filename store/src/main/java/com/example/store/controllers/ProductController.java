@@ -55,8 +55,12 @@ public class ProductController {
         }
     )
     @GetMapping()
-    public  ResponseEntity<List<ProductEntity>>  getAllProductsController(@RequestParam(required = false) String param) {
-        return ResponseEntity.ok().body(productService.filterAllProductsService());
+    public  ResponseEntity<List<ProductEntity>>  getAllProductsController(@RequestParam(required = false, name = "name") String name) {
+        if(name == null){
+            return ResponseEntity.ok().body(productService.filterAllProductsService());
+        }else{
+            return ResponseEntity.ok().body(productService.filterByNomeProductService(name));
+        }
     }
     
     @Operation(

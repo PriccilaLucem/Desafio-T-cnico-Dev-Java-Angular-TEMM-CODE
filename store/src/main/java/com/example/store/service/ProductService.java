@@ -50,5 +50,8 @@ public class ProductService {
         return productRepository.save(product);
     }
 
+    public List<ProductEntity> filterByNomeProductService(String nome){
+        return productRepository.findByNomeContaining(nome);
+    }
 
 }
