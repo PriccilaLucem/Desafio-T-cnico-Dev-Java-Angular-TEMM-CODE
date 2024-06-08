@@ -4,15 +4,3 @@
     justify-content: center;
     margin-top: 5vh;
 }
-button{ 
-    padding: auto;
-    border-radius: 20px;
-    border: color(0,0,0) 1px solid;
-    width: 20vw;
-    height: 5vh;
-}
-
-button:hover{
-    background-color: red;
-    color: blue;
-}

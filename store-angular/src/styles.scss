@@ -4,3 +4,22 @@
 
 /* Você também pode adicionar os estilos do tema do Angular Material aqui */
 /* Aqui você pode adicionar seus próprios estilos personalizados */
+button{ 
+    padding: auto;
+    border-radius: 20px;
+    border: color(0,0,0) 1px solid;
+    width: 20vw;
+    height: 5vh;
+}
+
+button:hover{
+    background-color: red;
+    color: blue;
+}
+
+.medium-class{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5vh;
+}

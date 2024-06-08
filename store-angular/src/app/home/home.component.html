@@ -1,10 +1,11 @@
 <section>
     <header class="home">
         <button (click)="toggleProducts()">Produtos</button>
-        <button >Categorias</button>
+        <button (click) = toggleCategories() >Categorias</button>
     </header>
     <section>
         <app-products *ngIf="showProducts"></app-products>
+        <app-categories *ngIf="showCategories"></app-categories>
     </section>
 </section>
 

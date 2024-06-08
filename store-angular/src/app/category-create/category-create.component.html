@@ -1,0 +1,20 @@
+<section>
+    <!-- <button (click) = "close()">Fechar</button> -->
+    
+    <div>
+      <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+        <div>
+          <label for="nome">Nome:</label>
+          <input id="nome" formControlName="nome">
+        </div>
+        
+        <div>
+          <label for="descricao">Descrição:</label>
+          <input id="descricao" formControlName="descricao">
+        </div>
+        
+        <button type="submit" [disabled]="categoryForm.invalid">Adicionar Produto</button>
+        <span *ngIf="showError" class="error-message">Categoria não existe</span>
+      </form>
+  </div>
+  </section>

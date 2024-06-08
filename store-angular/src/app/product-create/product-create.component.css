@@ -6,10 +6,7 @@ button{
     height: 3vh;
     margin: 20px;
 }
-button:hover{
-    background-color: red;
-    color: blue;
-}
+
 form{
     align-items: center;
     justify-content: center;
@@ -45,7 +42,7 @@ section{
 }
 
 .error-message {
-    color: red;
-    font-size: 14px;
-    margin-top: 5px;
-  }
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}

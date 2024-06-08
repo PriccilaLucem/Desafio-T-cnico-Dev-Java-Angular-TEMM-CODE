@@ -1,0 +1,20 @@
+
+<section>
+    
+    <section class="medium-class">
+        <div>
+            <button (click) = "openCategoryCrate()">Criar nova categoria</button>
+        </div>
+    </section>
+    <ul>
+        <li *ngFor="let category of categories$ | async">
+            <div>
+                {{category.nome}}
+            </div>    
+            <div>
+                {{category.descricao}}
+            </div>
+        
+        </li>
+    </ul>
+ </section>
