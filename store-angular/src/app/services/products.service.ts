@@ -23,7 +23,7 @@ export class ProductsService {
   putProduct(id:number, product:Product): Observable<Product>{
     return this.http.put<Product>(`${this.baseUrl}/product/${id}`, product)
   }
-  // filterByProductName(name: string){
-  //   return this.http.get<Product[]>(`${this.baseUrl}/product`); 
-  // }
+  filterByProductName(name: string){
+    return this.http.get<Product[]>(`${this.baseUrl}/product?name=${name}`); 
+  }
 }

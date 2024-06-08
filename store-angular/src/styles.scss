@@ -37,15 +37,15 @@ li{
     list-style: none;
     margin: 20px;
     border: 3px solid blue;
-    padding: 10px;
+    padding: 20px;
     border-radius: 10px;
-    width: 100%;
+    width: 20%;
 }
 
 .delete{
     background-color: red;
-    width: 300px;
     margin-right: 10px;
+    margin-bottom: 10px;
 }
 .info{
     display: flex;
@@ -65,4 +65,9 @@ input{
 }
 .update{
     background-color: blue;
+}
+.search{
+    border-radius: 20px;
+    margin-right: 10px;
+    margin-top: 10px;
 }

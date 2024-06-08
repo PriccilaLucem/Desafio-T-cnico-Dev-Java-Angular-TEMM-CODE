@@ -23,6 +23,7 @@ export class ProductsComponent implements OnInit {
   updatedPrice: number | null = null;
   updatedQuantity: number | null = null;
   updatedCategoryName: string = '';
+  searchTerm: string = '';
 
   constructor(
     private service: ProductsService,
@@ -83,5 +84,9 @@ export class ProductsComponent implements OnInit {
 
   openProductCreate(): void {
     this._dialog.open({});
+  }
+
+  filterProductsByNomeOrCategoryNome(): void{
+      this.products$ = this.service.filterByProductName(this.searchTerm);
   }
 }

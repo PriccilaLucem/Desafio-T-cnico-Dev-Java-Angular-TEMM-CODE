@@ -1,7 +1,7 @@
 <section>
   <section class="medium-class">
     <div>
-      <input type="text"> 
+      <input class="search" placeholder="Procurar produto" [(ngModel)]="searchTerm" (input)="filterProductsByNomeOrCategoryNome()">
       <button (click)="openProductCreate()">Criar novo produto</button>
     </div>
   </section>
