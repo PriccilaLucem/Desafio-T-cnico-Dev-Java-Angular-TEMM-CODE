@@ -1,0 +1,51 @@
+button{ 
+    padding: auto;
+    border-radius: 20px;
+    border: color(0,0,0) 1px solid;
+    width: 10vw;
+    height: 3vh;
+    margin: 20px;
+}
+button:hover{
+    background-color: red;
+    color: blue;
+}
+form{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+div{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    width: 30vw;
+}
+input{
+    width: 20vw;
+    margin: 3px;
+}
+
+label{
+    width: 2vw;
+    color: brown;
+}
+section{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.pos-absolute {
+    position: absolute;
+}
+
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+  }
