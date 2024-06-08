@@ -1,13 +1,46 @@
 <section>
-    
-    <section class="medium-class">
-        <div>
-            <button (click) = "openProductCreate()">Criar novo produto</button>
-        </div>
-    </section>
-    <ul>
-        <li *ngFor="let product of products$ | async">
-            {{ product.nome }} - {{ product.preco }}
-        </li>
-    </ul>
- </section>
+  <section class="medium-class">
+    <div>
+      <input type="text"> 
+      <button (click)="openProductCreate()">Criar novo produto</button>
+    </div>
+  </section>
+  <ul class="ul-list-all">
+    <li *ngFor="let product of products$ | async">
+      <div>
+        
+        <button class="delete" (click)="deleteProduct(product.id)">Deletar produto</button>
+        <button  (click)="enableEditing(product)">Editar produto</button>
+      </div>
+      <div class="info">
+        <p>Nome: </p>
+        <span *ngIf="editingId !== product.id">{{ product.nome }}</span>
+        <input *ngIf="editingId === product.id" [(ngModel)]="updatedName" />
+      </div>
+      <div class="info">
+        <p>Descrição: </p>
+        <span *ngIf="editingId !== product.id">{{ product.descricao }}</span>
+        <input *ngIf="editingId === product.id" [(ngModel)]="updatedDescription" />
+      </div>
+      <div class="info">
+        <p>Preço: </p>
+        <span *ngIf="editingId !== product.id">{{ product.preco }}</span>
+        <input *ngIf="editingId === product.id" [(ngModel)]="updatedPrice" type="number" />
+      </div>
+      <div class="info">
+        <p>Quantidade: </p>
+        <span *ngIf="editingId !== product.id">{{ product.quantity }}</span>
+        <input *ngIf="editingId === product.id" [(ngModel)]="updatedQuantity" type="number" />
+      </div>
+      <div class="info">
+        <p>Categoria: </p>
+        <span *ngIf="editingId !== product.id">{{ product.category.nome }}</span>
+        <input *ngIf="editingId === product.id" [(ngModel)]="updatedCategoryName" />
+      </div>
+      <div>
+        <button class="salvar" *ngIf="editingId === product.id" (click)="cancelEditing()">Cancelar</button>
+        <button class="salvar" *ngIf="editingId === product.id" (click)="saveProduct(product)">Salvar</button>
+      </div>
+    </li>
+  </ul>
+</section>

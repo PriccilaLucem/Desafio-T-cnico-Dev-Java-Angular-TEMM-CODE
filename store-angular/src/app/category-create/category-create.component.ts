@@ -36,7 +36,7 @@ export class CategoryCreateComponent {
       this.categoryService.postCategory(category).subscribe({
         next: (response) => {
           this.categoryUpdateService.emitCategoryUpdated();
-
+          this.close()
         },
         error: (error) => {
           this.showError = true;

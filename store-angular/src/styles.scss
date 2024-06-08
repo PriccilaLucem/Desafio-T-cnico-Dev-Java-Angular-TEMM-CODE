@@ -8,10 +8,12 @@ button{
     border: color(0 0,0) 1px solid;
     width: 20vw;
     height: 5vh;
+    background-color: rgb(114, 114, 156);
+    color: black;
 }
 
 button:hover{
-    background-color: red;
+    background-color: rgb(230, 169, 169);
     color: blue;
 }
 
@@ -37,11 +39,13 @@ li{
     border: 3px solid blue;
     padding: 10px;
     border-radius: 10px;
+    width: 100%;
 }
 
 .delete{
     background-color: red;
-    width: 100px;
+    width: 300px;
+    margin-right: 10px;
 }
 .info{
     display: flex;
@@ -55,4 +59,10 @@ p{
 }
 input{
     width: 300px;
+}
+.salvar{
+    margin: 10px;
+}
+.update{
+    background-color: blue;
 }

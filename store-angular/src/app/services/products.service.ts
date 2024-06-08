@@ -17,4 +17,13 @@ export class ProductsService {
   postProduct(product: Product): Observable<Product> {
     return this.http.post<Product>(`${this.baseUrl}/product`, product);
   }
+  deleteProduct(id:number): Observable<void>{
+    return this.http.delete<void>(`${this.baseUrl}/product/${id}`);
+  }
+  putProduct(id:number, product:Product): Observable<Product>{
+    return this.http.put<Product>(`${this.baseUrl}/product/${id}`, product)
+  }
+  // filterByProductName(name: string){
+  //   return this.http.get<Product[]>(`${this.baseUrl}/product`); 
+  // }
 }
