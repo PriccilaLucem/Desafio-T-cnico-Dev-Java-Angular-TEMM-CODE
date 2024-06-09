@@ -4,7 +4,6 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -123,27 +122,60 @@ public class ProductServiceTest {
         verify(productRepository, never()).deleteById(idCaptor.capture());
     }
 
+   
     @Test
-    public void testPutProductService() throws BadRequestException{
-        ProductEntity product = new ProductEntity();
-        product.setId(1L);
+    public void testPutProductService() throws BadRequestException {
+        ProductCategoryDTO productDTO = new ProductCategoryDTO();
+        productDTO.setNome("Updated Product");
+        productDTO.setDescricao("Updated Description");
+        productDTO.setPreco(25.5);
+        productDTO.setQuantity(3);
 
-        when(productRepository.save(product)).thenReturn(product);
+        ProductEntity existingProduct = new ProductEntity();
+        existingProduct.setId(1L);
+        existingProduct.setNome("Existing Product");
+        existingProduct.setDescricao("Existing Description");
+        existingProduct.setPreco(20.0);
+        existingProduct.setQuantity(5);
 
-        ProductEntity updatedProduct = productService.putProductService(product);
+        ProductEntity updatedProductEntity = new ProductEntity();
+        updatedProductEntity.setId(1L);
+        updatedProductEntity.setNome("Updated Product");
+        updatedProductEntity.setDescricao("Updated Description");
+        updatedProductEntity.setPreco(25.5);
+        updatedProductEntity.setQuantity(3);
+
+        when(productRepository.findById(1L)).thenReturn(Optional.of(existingProduct));
+        when(productRepository.save(any(ProductEntity.class))).thenReturn(updatedProductEntity);
+
+        ProductEntity updatedProduct = productService.putProductService(productDTO, 1L);
 
         assertThat(updatedProduct).isNotNull();
         assertThat(updatedProduct.getId()).isEqualTo(1L);
+        assertThat(updatedProduct.getNome()).isEqualTo("Updated Product");
+        assertThat(updatedProduct.getDescricao()).isEqualTo("Updated Description");
+        assertThat(updatedProduct.getPreco()).isEqualTo(25.5);
+        assertThat(updatedProduct.getQuantity()).isEqualTo(3);
 
-        verify(productRepository, times(1)).save(product);
+        verify(productRepository, times(1)).findById(1L);
+        verify(productRepository, times(1)).save(any(ProductEntity.class));
     }
 
     @Test
-    public void testPutProductService_InvalidProduct(){
-        ProductEntity product = new ProductEntity();
+    public void testPutProductService_ProductNotFound() {
+        ProductCategoryDTO productDTO = new ProductCategoryDTO();
+        productDTO.setNome("Updated Product");
+        productDTO.setDescricao("Updated Description");
+        productDTO.setPreco(25.5);
+        productDTO.setQuantity(3);
 
-        assertThatThrownBy(() -> productService.putProductService(product))
-        .isInstanceOf(BadRequestException.class)
-        .hasMessage("Product does not exist");
-}
+        when(productRepository.findById(1L)).thenReturn(Optional.empty());
+
+        assertThrows(EntityNotFoundException.class, () -> {
+            productService.putProductService(productDTO, 1L);
+        });
+
+        verify(productRepository, times(1)).findById(1L);
+        verify(productRepository, times(0)).save(any(ProductEntity.class));
+    }
 }

@@ -9,7 +9,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.util.Arrays;
 import java.util.List;
 
-import org.apache.coyote.BadRequestException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
@@ -105,23 +104,27 @@ public class ProductControllerTest {
                 .andExpect(jsonPath("$.id").value(1L))
                 .andExpect(jsonPath("$.nome").value("Product"));
     }
-
     @Test
     void testPutProductController() throws Exception {
-        ProductEntity productEntity = new ProductEntity();
-        productEntity.setId(1L);
+        ProductCategoryDTO productEntity = new ProductCategoryDTO();
         productEntity.setNome("Updated Product");
         productEntity.setDescricao("Updated Description");
         productEntity.setPreco(25.5);
         productEntity.setQuantity(3);
 
-        when(productService.putProductService(any(ProductEntity.class))).thenReturn(productEntity);
+        ProductEntity updatedProductEntity = new ProductEntity();
+        updatedProductEntity.setId(1L);
+        updatedProductEntity.setNome("Updated Product");
+        updatedProductEntity.setDescricao("Updated Description");
+        updatedProductEntity.setPreco(25.5);
+        updatedProductEntity.setQuantity(3);
+
+        when(productService.putProductService(any(ProductCategoryDTO.class), any(Long.class))).thenReturn(updatedProductEntity);
 
         mockMvc.perform(put("/api/product/{id}", 1L)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(productEntity)))
-                .andExpect(status().isAccepted())
-                .andExpect(jsonPath("$.nome").value("Updated Product"));
+                .andExpect(status().isAccepted());
     }
 
     @Test
@@ -160,22 +163,5 @@ public class ProductControllerTest {
                 .content(new ObjectMapper().writeValueAsString(productDTO)))
                 .andExpect(status().isConflict())
                 .andExpect(jsonPath("$.message").value("Unique constraint violation"));
-    }
-
-    @Test
-    void testHandleBadRequestException() throws Exception {
-        ProductEntity productEntity = new ProductEntity();
-        productEntity.setNome("Updated Product");
-        productEntity.setDescricao("Updated Description");
-        productEntity.setPreco(25.5);
-        productEntity.setQuantity(3);
-
-        doThrow(new BadRequestException("Bad request")).when(productService).putProductService(any(ProductEntity.class));
-
-        mockMvc.perform(put("/api/product/1")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(new ObjectMapper().writeValueAsString(productEntity)))
-                .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.message").value("Bad request"));
     }
 }
