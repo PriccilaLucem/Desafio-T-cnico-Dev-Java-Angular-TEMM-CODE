@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ProductsService } from '../services/products.service';
+import { ProductsService } from '../../services/products.service';
 import { Product } from 'app/interfaces/product.interface';
 import { CommonModule } from '@angular/common';
-import { ProductCreateComponent } from 'app/product-create/product-create.component';
-import { ProductCreateService } from 'app/services/product-create.service';
-import { ProductUpdateService } from 'app/services/product-update.service';
+import { ProductCreateComponent } from 'app/features/feature2/components/product-create/product-create.component';
+import { ProductCreateService } from 'app/features/feature2/services/product-create.service';
+import { ProductUpdateService } from 'app/core/services/product-update.service';
 import { FormsModule } from '@angular/forms';
 
 @Component({

@@ -2,9 +2,9 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Category } from 'app/interfaces/category.interface';
-import { CategoriesService } from 'app/services/categories.service';
-import { CategoryCreateService } from 'app/services/category-create.service';
-import { CategoryUpdateService } from 'app/services/category-update.service';
+import { CategoriesService } from 'app/features/feature1/services/categories.service';
+import { CategoryCreateService } from 'app/features/feature2/services/category-create.service';
+import { CategoryUpdateService } from 'app/core/services/category-update.service';
 import { Observable } from 'rxjs';
 
 @Component({

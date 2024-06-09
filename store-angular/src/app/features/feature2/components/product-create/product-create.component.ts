@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ProductsService } from '../services/products.service'; // Certifique-se de ajustar o caminho conforme necessário
-import { Product } from '../interfaces/product.interface'; // Certifique-se de ajustar o caminho conforme necessário
-import { ProductCreateService } from 'app/services/product-create.service';
-import { ProductUpdateService } from 'app/services/product-update.service';
+import { ProductsService } from 'app/features/feature1/services/products.service'; 
+import { Product } from 'app/interfaces/product.interface';
+import { ProductCreateService } from '../../services/product-create.service';
+import { ProductUpdateService } from 'app/core/services/product-update.service';
 
 @Component({
   selector: 'app-product-create',

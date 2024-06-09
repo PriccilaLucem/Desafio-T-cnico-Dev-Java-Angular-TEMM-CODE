@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { CategoryCreateComponent } from 'app/category-create/category-create.component';
+import { CategoryCreateComponent } from 'app/features/feature2/components/category-create/category-create.component';
 
 @Injectable({
   providedIn: 'root'

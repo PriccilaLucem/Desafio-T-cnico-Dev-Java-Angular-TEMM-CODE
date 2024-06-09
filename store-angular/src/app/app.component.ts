@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './features/feature1/components/home/home.component';
 
 @Component({
   imports: [HomeComponent],
