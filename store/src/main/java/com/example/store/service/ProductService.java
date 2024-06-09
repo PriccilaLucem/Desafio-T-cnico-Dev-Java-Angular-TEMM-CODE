@@ -13,6 +13,7 @@ import com.example.store.util.Mapper;
 import jakarta.persistence.EntityNotFoundException;
 
 import com.example.store.dto.ProductCategoryDTO;
+import com.example.store.entities.CategoryEntity;
 import com.example.store.entities.ProductEntity;
 
 @Service
@@ -43,15 +44,16 @@ public class ProductService {
         productRepository.delete(productRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Product not found")));
     }
 
-    public ProductEntity putProductService(ProductEntity product) throws BadRequestException{
-        if(product.getId() == null){
-            throw new BadRequestException("Product does not exist");
-        }
-        return productRepository.save(product);
+    public ProductEntity putProductService(ProductCategoryDTO product, Long id) throws BadRequestException{
+      
+        CategoryEntity category = categoryService.filterByCategoryNameService(product.getCategoryNome());
+        ProductEntity  productEntity = productRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Product does not exist"));
+        productEntity.setCategory(category);
+        return productRepository.save(productEntity);
     }
 
     public List<ProductEntity> filterByNomeProductService(String nome){
-        return productRepository.findByNomeContaining(nome);
+        return productRepository.findByNomeOrCategoria(nome, nome);
     }
 
 }

@@ -40,4 +40,7 @@ public class CategoryService {
         }
         return categoryRepository.save(category);
     }
+    public List<CategoryEntity> filterByNome(String nome){
+        return categoryRepository.filterCategoryByName(nome);
+    }
 }

@@ -83,9 +83,8 @@ public class ProductController {
         } 
     )
     @PutMapping("/{id}")
-    public ResponseEntity<ProductEntity> putProductController(@PathVariable Long id, @RequestBody ProductEntity entity) throws BadRequestException {
-        entity.setId(id);
-        return ResponseEntity.accepted().body(productService.putProductService(entity));
+    public ResponseEntity<ProductEntity> putProductController(@PathVariable Long id, @RequestBody ProductCategoryDTO entity) throws BadRequestException {
+        return ResponseEntity.accepted().body(productService.putProductService(entity, id));
     }
 
     @Operation(
