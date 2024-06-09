@@ -23,6 +23,7 @@ export class CategoriesComponent implements OnInit {
   updatedCategory: Category | null = null;
   updatedName: string = '';
   updatedDescription: string = '';
+  searchTerm: string = '';
 
   constructor(
     private service: CategoriesService,
@@ -69,6 +70,9 @@ export class CategoriesComponent implements OnInit {
       }
     })
   }
+  filterProductsByNomeOrCategoryNome(): void{
+    this.categories$ = this.service.filterByCaregoryName(this.searchTerm);
+}
   cancelEditing(): void {
     this.editingId = null;
   }

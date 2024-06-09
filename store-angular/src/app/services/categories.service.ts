@@ -23,4 +23,8 @@ export class CategoriesService {
   putCategory(id: number, category:Category): Observable<Category>{
     return this.http.put<Category>(`${this.baseUrl}/category/${id}`, category)
   }
+  filterByCaregoryName(name:string): Observable<Category[]>{
+    return this.http.get<Category[]>(`${this.baseUrl}/category/search?nome=${name}`); 
+
+  }
 }
