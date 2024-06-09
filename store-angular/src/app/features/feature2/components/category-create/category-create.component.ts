@@ -29,8 +29,6 @@ export class CategoryCreateComponent {
     });
   }
   onSubmit(): void {
-
-    
     if (this.categoryForm.valid) {
       const category: Category = this.categoryForm.value;
       this.categoryService.postCategory(category).subscribe({

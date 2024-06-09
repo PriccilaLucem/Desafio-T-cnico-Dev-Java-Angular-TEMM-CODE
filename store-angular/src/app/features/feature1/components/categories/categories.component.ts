@@ -54,7 +54,7 @@ export class CategoriesComponent implements OnInit {
     });
   }
   enableEditing(category: Category): void {
-    this.editingId = category.id;
+    this.editingId = category.id as number;
     this.updatedName = category.nome;
     this.updatedDescription = category.descricao;
   }
@@ -64,7 +64,7 @@ export class CategoriesComponent implements OnInit {
     category.nome = this.updatedName
     this.editingId = null;
 
-    this.service.putCategory(category.id, category).subscribe({
+    this.service.putCategory(category.id as number, category).subscribe({
       next: () => {
         this.loadCategories()
       }
