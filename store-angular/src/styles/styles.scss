@@ -3,49 +3,54 @@
 @include mat.core();
 
 button{ 
-    padding: auto;
     border-radius: 20px;
     border: color(0 0,0) 1px solid;
-    width: 20vw;
     height: 5vh;
     background-color: rgb(114, 114, 156);
     color: black;
 }
-
 button:hover{
     background-color: rgb(230, 169, 169);
     color: blue;
 }
 
+.pos-absolute {
+    position: absolute;
+}
+
+
 .medium-class{
     display: flex;
-    align-items: center;
     justify-content: center;
-    flex-direction: column;
-    margin-top: 5vh;
+}    
+
+.delete{
+    background-color: red;
+    margin-right: 10px;
+    margin-bottom: 10px;
 }
+
+input {
+    border-radius: 10px;
+    margin: 5px;
+}
+
 .ul-list-all{
     display: flex;
     align-items: row;
     justify-content: flex-start;
     flex-wrap: wrap;    
 }
-li{
+
+li {
+    margin: 10px;
     display: flex;
     align-items: center;
     flex-direction: column;
     list-style: none;
-    margin: 20px;
     border: 3px solid blue;
     padding: 20px;
     border-radius: 10px;
-    width: 20%;
-}
-
-.delete{
-    background-color: red;
-    margin-right: 10px;
-    margin-bottom: 10px;
 }
 .info{
     display: flex;
@@ -57,9 +62,6 @@ p{
     margin-right: 10px;
     width: 80px;
 }
-input{
-    width: 300px;
-}
 .salvar{
     margin: 10px;
 }
@@ -70,4 +72,65 @@ input{
     border-radius: 20px;
     margin-right: 10px;
     margin-top: 10px;
+}
+
+@media only screen and (max-width:800px) {
+    .search {
+        width: 150px;
+    }
+    
+    .create {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+    
+    .interact {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    li {
+        width: 80%;
+    }
+    
+    button {
+        width: 200px;
+    }
+    
+    .form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    
+    .label {
+        color: brown;
+        margin: 5px;
+    }
+    
+    .fechar {
+        margin: 10px;
+        background-color: red;
+    }
+}
+@media only screen and (max-width:1000px) and (min-width: 801px){
+    button{
+        width: 30vw;
+    }
+}
+
+@media only screen and (min-width:1000px) {
+    li{
+        width: 25vw;
+    }
+    button{
+        width: 20vw;
+    }
+    input{
+        width: 20vw;
+    }
 }

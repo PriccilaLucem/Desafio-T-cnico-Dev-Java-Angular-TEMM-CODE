@@ -1,6 +1,6 @@
 <section>
   <section class="medium-class">
-    <div>
+    <div class="interact">
       <input class="search" placeholder="Procurar produto" [(ngModel)]="searchTerm" (input)="filterProductsByNomeOrCategoryNome()">
       <button (click)="openProductCreate()">Criar novo produto</button>
     </div>
@@ -38,7 +38,7 @@
         <input *ngIf="editingId === product.id" [(ngModel)]="updatedCategoryName" />
       </div>
       <div>
-        <button class="salvar" *ngIf="editingId === product.id" (click)="cancelEditing()">Cancelar</button>
+        <button class="delete" *ngIf="editingId === product.id" (click)="cancelEditing()">Cancelar</button>
         <button class="salvar" *ngIf="editingId === product.id" (click)="saveProduct(product)">Salvar</button>
       </div>
     </li>

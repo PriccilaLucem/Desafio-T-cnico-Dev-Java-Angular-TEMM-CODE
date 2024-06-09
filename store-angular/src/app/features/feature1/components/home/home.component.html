@@ -1,7 +1,7 @@
 <section>
     <header class="home">
-        <button (click)="toggleProducts()">Produtos</button>
-        <button (click) = toggleCategories() >Categorias</button>
+        <button class="tooggle"(click)="toggleProducts()">Produtos</button>
+        <button class="tooggle" (click) = toggleCategories() >Categorias</button>
     </header>
     <section>
         <app-products *ngIf="showProducts"></app-products>

@@ -1,30 +1,30 @@
-<section>
-  <button (click) = "close()">Fechar</button>
+<section class="form">
+  <button  class="fechar" (click) = "close()">Fechar</button>
   
-  <div>
-    <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
-      <div>
-        <label for="nome">Nome:</label>
+  <div >
+    <form class="form" [formGroup]="productForm" (ngSubmit)="onSubmit()">
+      <div class="create">
+        <label class="label" for="nome">Nome:</label>
         <input id="nome" formControlName="nome">
       </div>
       
-      <div>
-        <label for="descricao">Descrição:</label>
+      <div class="create" >
+        <label class="label" for="descricao">Descrição:</label>
         <input id="descricao" formControlName="descricao">
       </div>
       
-      <div>
-        <label for="preco">Preço:</label>
+      <div class="create">
+        <label class="label" for="preco">Preço:</label>
         <input id="preco" formControlName="preco" type="number">
       </div>
       
-      <div>
-        <label for="quantity">Quantidade:</label>
+      <div class="create">
+        <label class="label" for="quantity">Quantidade:</label>
         <input id="quantity" formControlName="quantity" type="number">
       </div>
       
-      <div>
-        <label for="categoryNome">Categoria:</label>
+      <div class="create">
+        <label class="label" for="categoryNome">Categoria:</label>
         <input id="categoryNome" formControlName="categoryNome">
       </div>
       

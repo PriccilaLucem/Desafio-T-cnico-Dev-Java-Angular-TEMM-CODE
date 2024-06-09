@@ -1,6 +1,31 @@
 .home{
-    display: flex;
     justify-content: space-between;
     padding-left: 20vh;
     padding-right: 20vh;
+    display: flex;
+
+}
+
+@media screen and (max-width: 600px) {
+    .home {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .toggle{
+        margin: 10px;
+        width: 100px;
+    }
+    button{
+        margin: 10px;
+    }
+}
+@media screen and (min-width: 601px) {
+    .home{
+        justify-content: space-between;
+    }
+    .tooggle{
+        width: 30vw;
+         margin: 10px;
+    }
 }
