@@ -52,6 +52,15 @@ li {
     padding: 20px;
     border-radius: 10px;
 }
+.label {
+    color: brown;
+    margin: 5px;
+}
+
+.fechar {
+    margin: 10px;
+    background-color: red;
+}
 .info{
     display: flex;
     margin-top: 10px;
@@ -73,7 +82,21 @@ p{
     margin-right: 10px;
     margin-top: 10px;
 }
-
+@media only screen and (min-width: 300px)  {
+        .fechar{
+            width: 40vw;
+        }
+        button{
+            width: 40vw;
+        }
+        .form button{
+            width: 40vw;
+        }
+        input{
+            width: 30vw;
+        }
+        
+}
 @media only screen and (max-width:800px) {
     .search {
         width: 150px;
@@ -107,19 +130,17 @@ p{
         flex-direction: column;
     }
     
-    .label {
-        color: brown;
-        margin: 5px;
-    }
-    
-    .fechar {
-        margin: 10px;
-        background-color: red;
-    }
+
 }
 @media only screen and (max-width:1000px) and (min-width: 801px){
     button{
         width: 30vw;
+    }
+     .form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
     }
 }
 
@@ -132,5 +153,17 @@ p{
     }
     input{
         width: 20vw;
+    }
+    .form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .form button{
+        width: 20vw;
+    }
+    button{
+        margin-top: 20px;
     }
 }
