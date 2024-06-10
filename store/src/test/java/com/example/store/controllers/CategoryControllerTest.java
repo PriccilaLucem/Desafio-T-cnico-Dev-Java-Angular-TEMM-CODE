@@ -23,6 +23,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.example.store.entities.CategoryEntity;
 import com.example.store.service.CategoryService;
 
+import java.util.Collections;
+
 
 @WebMvcTest(CategoryController.class)
 public class CategoryControllerTest {
@@ -79,15 +81,15 @@ public class CategoryControllerTest {
         category.setDescricao("DESCRICAO");
         category.setNome("NOME");
 
-        when(categoryService.filterByCategoryNameService(category.getNome())).thenReturn(category);
+        when(categoryService.filterByNome(category.getNome())).thenReturn(Collections.singletonList(category));
 
         mockMvc.perform(get("/api/category/search")
                 .param("nome", category.getNome())
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value(category.getId()))
-                .andExpect(jsonPath("$.nome").value(category.getNome()))
-                .andExpect(jsonPath("$.descricao").value(category.getDescricao()));
+                .andExpect(jsonPath("$[0].id").value(category.getId()))
+                .andExpect(jsonPath("$[0].nome").value(category.getNome()))
+                .andExpect(jsonPath("$[0].descricao").value(category.getDescricao()));
     }
     @Test
     void testPutCategoryEntity() throws Exception {

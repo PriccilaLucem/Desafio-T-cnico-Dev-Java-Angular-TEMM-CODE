@@ -47,7 +47,7 @@ public class CategoryController {
 
     @Operation(
         responses = { 
-            @ApiResponse(description = "OK", responseCode = "200", content = @Content(mediaType = "application/json", schema = @Schema(implementation = CategoryEntity.class))),
+             @ApiResponse(description = "OK", responseCode = "200", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = CategoryEntity.class)))),
             @ApiResponse(description = "Not found", responseCode = "404", content = @Content(schema = @Schema(implementation = GlobalExceptionHandler.ErrorResponse.class))),
         }
     )
