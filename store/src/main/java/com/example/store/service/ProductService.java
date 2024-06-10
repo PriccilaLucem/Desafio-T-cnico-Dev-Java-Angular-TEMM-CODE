@@ -28,7 +28,7 @@ public class ProductService {
     @Transactional
     public ProductEntity postProductService(ProductCategoryDTO productDTO){
         ProductEntity product = Mapper.parseObject(productDTO, ProductEntity.class);
-        product.setCategory(categoryService.filterByCategoryNameService(productDTO.getCategoryNome()));
+        product.setCategory(categoryService.getCategoryByName(productDTO.getCategoryNome()));
         return productRepository.save(product);
     }
 
@@ -46,7 +46,7 @@ public class ProductService {
 
     public ProductEntity putProductService(ProductCategoryDTO product, Long id) throws BadRequestException{
       
-        CategoryEntity category = categoryService.filterByCategoryNameService(product.getCategoryNome());
+        CategoryEntity category = categoryService.getCategoryByName(product.getCategoryNome());
         ProductEntity  productEntity = productRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Product does not exist"));
         productEntity.setCategory(category);
         return productRepository.save(productEntity);

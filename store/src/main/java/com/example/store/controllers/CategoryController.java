@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.store.entities.CategoryEntity;
-import com.example.store.service.CategoryService;
+import com.example.store.presenter.CategoryPresenter;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -35,14 +35,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class CategoryController {
     
     @Autowired
-    private CategoryService categoryService;
+    private CategoryPresenter categoryPresenter;
 
     @Operation(
         responses = @ApiResponse(description = "OK", responseCode = "200", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = CategoryEntity.class)))
     ))
     @GetMapping()
     public ResponseEntity<List<CategoryEntity>> getAllCategories() {
-        return ResponseEntity.ok().body(categoryService.filterAllCategoriesService());
+        return ResponseEntity.ok().body(categoryPresenter.getAllCategories());
     }
 
     @Operation(
@@ -53,7 +53,7 @@ public class CategoryController {
     )
     @GetMapping("/search")
     public ResponseEntity<List<CategoryEntity>> getCategoryByName(@RequestParam String nome) {
-        return ResponseEntity.ok().body(categoryService.filterByNome(nome));
+        return ResponseEntity.ok().body(categoryPresenter.getCategoriesByName(nome));
     }
     
     @Operation(
@@ -64,7 +64,7 @@ public class CategoryController {
     )
     @PostMapping()
     public ResponseEntity<CategoryEntity> postCategory(@RequestBody CategoryEntity entity) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(categoryService.postCategoryService(entity));
+        return ResponseEntity.status(HttpStatus.CREATED).body(categoryPresenter.createCategory(entity));
     }
 
     @Operation(
@@ -78,7 +78,7 @@ public class CategoryController {
     @PutMapping("/{id}")
     public ResponseEntity<CategoryEntity> putCategoryEntity(@PathVariable Long id, @RequestBody CategoryEntity entity) throws BadRequestException {
         entity.setId(id);
-        return ResponseEntity.accepted().body(categoryService.putCategoryService(entity));
+        return ResponseEntity.accepted().body(categoryPresenter.updateCategory(entity));
     }
 
 
@@ -90,7 +90,7 @@ public class CategoryController {
     )
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> deleteCategoryController(@PathVariable Long id){
-        categoryService.deleteCategoryService(id);
+        categoryPresenter.deleteCategory(id);
         return ResponseEntity.noContent().build();
     }
     

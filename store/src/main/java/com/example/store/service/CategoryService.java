@@ -17,30 +17,31 @@ public class CategoryService {
     @Autowired
     private CategoryRepository categoryRepository;
 
-
-    public CategoryEntity postCategoryService(CategoryEntity category){
+    public CategoryEntity createCategory(CategoryEntity category) {
         return categoryRepository.save(category);
     }
 
-    public CategoryEntity filterByCategoryNameService(String nome){
-        return categoryRepository.findByNome(nome).orElseThrow(() -> new EntityNotFoundException("Category not found"));
+    public CategoryEntity getCategoryByName(String name) {
+        return categoryRepository.findByNome(name)
+                .orElseThrow(() -> new EntityNotFoundException("Category not found"));
     }
 
-    public List<CategoryEntity> filterAllCategoriesService(){
+    public List<CategoryEntity> getAllCategories() {
         return categoryRepository.findAll();
     }
     
-    public void deleteCategoryService(Long id){
-        categoryRepository.delete(categoryRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Category not found")));
+    public void deleteCategory(Long id) {
+        categoryRepository.deleteById(id);
     }
 
-    public CategoryEntity putCategoryService(CategoryEntity category) throws BadRequestException{
-        if(category.getId() == null){
-            throw new BadRequestException("Category does not exist");
+    public CategoryEntity updateCategory(CategoryEntity category) throws BadRequestException {
+        if (category.getId() == null) {
+            throw new BadRequestException("Category ID cannot be null");
         }
         return categoryRepository.save(category);
     }
-    public List<CategoryEntity> filterByNome(String nome){
-        return categoryRepository.filterCategoryByName(nome);
+
+    public List<CategoryEntity> getCategoriesByName(String name) {
+        return categoryRepository.filterCategoryByName(name);
     }
 }

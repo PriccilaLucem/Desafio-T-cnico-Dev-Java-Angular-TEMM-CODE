@@ -66,7 +66,7 @@ public class ProductServiceTest {
         productEntity.setPreco(productDTO.getPreco());
         productEntity.setQuantity(productDTO.getQuantity());
 
-        when(categoryService.filterByCategoryNameService(productDTO.getCategoryNome())).thenReturn(category);
+        when(categoryService.getCategoryByName(productDTO.getCategoryNome())).thenReturn(category);
         when(productRepository.save(any(ProductEntity.class))).thenReturn(productEntity);
 
         ProductEntity savedProduct = productService.postProductService(productDTO);
@@ -78,7 +78,7 @@ public class ProductServiceTest {
         assertEquals(productDTO.getPreco(), savedProduct.getPreco());
         assertEquals(productDTO.getQuantity(), savedProduct.getQuantity());
 
-        verify(categoryService, times(1)).filterByCategoryNameService(productDTO.getCategoryNome());
+        verify(categoryService, times(1)).getCategoriesByName(productDTO.getCategoryNome());
         verify(productRepository, times(1)).save(any(ProductEntity.class));
     }
 

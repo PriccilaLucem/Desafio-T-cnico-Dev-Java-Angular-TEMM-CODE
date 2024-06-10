@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.store.dto.ProductCategoryDTO;
 import com.example.store.entities.ProductEntity;
-import com.example.store.service.ProductService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -27,7 +26,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import org.springframework.web.bind.annotation.PutMapping;
-
+import com.example.store.presenter.ProductPresenter;
 
 @RestController
 @RequestMapping("/api/product")
@@ -35,7 +34,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 public class ProductController {
     
     @Autowired
-    private ProductService productService;
+    private ProductPresenter productPresenter;
 
 
     @Operation(
@@ -46,7 +45,7 @@ public class ProductController {
     )
     @PostMapping()
     public ResponseEntity<ProductEntity> postProductController(@RequestBody ProductCategoryDTO entity) {        
-        return ResponseEntity.status(HttpStatus.CREATED).body(productService.postProductService(entity));
+        return ResponseEntity.status(HttpStatus.CREATED).body(productPresenter.createProduct(entity));
     }
 
     @Operation(
@@ -57,9 +56,9 @@ public class ProductController {
     @GetMapping()
     public  ResponseEntity<List<ProductEntity>>  getAllProductsController(@RequestParam(required = false, name = "name") String name) {
         if(name == null){
-            return ResponseEntity.ok().body(productService.filterAllProductsService());
+            return ResponseEntity.ok().body(productPresenter.getAllProducts());
         }else{
-            return ResponseEntity.ok().body(productService.filterByNomeProductService(name));
+            return ResponseEntity.ok().body(productPresenter.getProductsByName(name));
         }
     }
     
@@ -71,7 +70,7 @@ public class ProductController {
     )
     @GetMapping("/{product_id}")
     public ResponseEntity<ProductEntity> getOneProductController(@PathVariable(name = "product_id") Long id) {
-        return ResponseEntity.ok().body(productService.filterByProductIdService(id));
+        return ResponseEntity.ok().body(productPresenter.getProductById(id));
     }
     
     @Operation(
@@ -84,7 +83,7 @@ public class ProductController {
     )
     @PutMapping("/{id}")
     public ResponseEntity<ProductEntity> putProductController(@PathVariable Long id, @RequestBody ProductCategoryDTO entity) throws BadRequestException {
-        return ResponseEntity.accepted().body(productService.putProductService(entity, id));
+        return ResponseEntity.accepted().body(productPresenter.updateProduct(entity, id));
     }
 
     @Operation(
@@ -95,7 +94,7 @@ public class ProductController {
     )
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> deleteProductController(@PathVariable Long id){
-        productService.deleteProductsService(id);
+        productPresenter.deleteProduct(id);
         return ResponseEntity.noContent().build();
     }
 }
